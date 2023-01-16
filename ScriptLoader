@@ -1,5 +1,21 @@
-repeat wait() until game:IsLoaded()
-local PlaceId = game.PlaceId
-if PlaceId == 2753915549 or PlaceId == 4442272183 or PlaceId == 7449423635 or PlaceId == 4520749081 or PlaceId == 6381829480 or PlaceId == 5931540094 then
-    loadstring(game:HttpGet"https://raw.githubusercontent.com/PonityScripts/BonIsMe/main/BoozyX")()
+
+local key = _G.Key
+local check = "https://heazerwhitelist001.000webhostapp.com/check.php?key=" .. key
+if game:HttpGet(check) == "Whitelisted" then
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+            Icon = "rbxassetid://6034509993";
+            Title = "BoozyX Hub Notify", 
+            Text = "✅ Whitelisted"
+        }) 
+loadstring(game:HttpGet("https://heazerwhitelist001.000webhostapp.com/script.lua"))()
+else
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+            Icon = "rbxassetid://6034509993";
+            Title = "BoozyX Hub Notify", 
+            Text = "❌  Key Not Found"
+        })
+        wait(10)
+game.Players.LocalPlayer:Kick("Wrong Key! Please Rejoin And Try Again.")
+wait(5)
+game:Shutdown()
 end
